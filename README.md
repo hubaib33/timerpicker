@@ -1,17 +1,56 @@
 # timepickerfield
 
-A new Flutter project.
+A read-only, **web-style overlay time picker text field** for Flutter. It looks
+like a normal `TextField`, but tapping it opens a compact panel with **HOURS**
+and **MINUTES** dropdowns anchored right under the field. The selected value is
+written back into your controller as a zero-padded `HH:mm` (24-hour) string.
 
-## Getting Started
+Repo: https://github.com/hubaib33/timerpicker
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- 📎 Drops into any form — renders as a real `TextField`, honours your `InputDecoration`.
+- 🕒 Overlay panel with scrollable HOURS (0–23) and MINUTES (0–59) dropdowns.
+- ⌨️ Full keyboard support: Enter/Space to open, Tab between columns, ↑/↓ to move, Enter to pick, Esc to close.
+- 🎨 Configurable accent / border colors and prefix icon.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Install (from GitHub)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-"# timerpicker" 
+```yaml
+dependencies:
+  timepickerfield:
+    git:
+      url: https://github.com/hubaib33/timerpicker.git
+      ref: main
+```
+
+Then `flutter pub get`.
+
+## Usage
+
+```dart
+import 'package:timepickerfield/timepickerfield.dart';
+
+TimePickerField(
+  controller: myController,          // receives 'HH:mm'
+  decoration: const InputDecoration(labelText: 'TIME'),
+  onChanged: (value) => print(value),
+)
+```
+
+## `TimePickerField` API
+
+| Parameter        | Type                    | Default             |
+| ---------------- | ----------------------- | ------------------- |
+| `controller`     | `TextEditingController` | **required**        |
+| `decoration`     | `InputDecoration`       | `InputDecoration()` |
+| `textStyle`      | `TextStyle`             | `fontSize: 12`      |
+| `accent`         | `Color`                 | `0xFF4F46E5`        |
+| `borderColor`    | `Color`                 | `0xFFE5E7EB`        |
+| `showPrefixIcon` | `bool`                  | `true`              |
+| `prefixIcon`     | `IconData`              | `Icons.access_time` |
+| `onChanged`      | `ValueChanged<String>?` | `null`              |
+
+## License
+
+MIT
